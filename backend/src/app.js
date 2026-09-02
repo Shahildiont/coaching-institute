@@ -21,8 +21,9 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://coaching-institute-steel.vercel.app",
+  "coaching-institute-steel.vercel.app",
 ];
+
 
 app.use(
   cors({
