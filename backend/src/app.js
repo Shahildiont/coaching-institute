@@ -15,11 +15,28 @@ const dashboardRoutes = require("./routes/dashboard");
 const userRoutes = require("./routes/userRoutes");
 const teamRoutes = require("./routes/teamRoutes");
 const questionPaperRoutes = require("./routes/questionPaperRoutes");
-const {protect} = require("./middleware/authMiddleware")
+const { protect } = require("./middleware/authMiddleware");
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://coaching-institute-steel.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -52,5 +69,5 @@ app.use("/api/users", userRoutes);
 app.use("/api/teams", teamRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/question-papers", questionPaperRoutes);
-  
+
 module.exports = app;
