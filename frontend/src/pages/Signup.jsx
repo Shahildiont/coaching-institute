@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router";
 import { useState } from "react";
-
-const API_BASE_URL = "http://localhost:5000";
+import { API_BASE_URL } from "../services/apiConfig";
 
 function Signup() {
   const navigate = useNavigate();
@@ -29,7 +28,7 @@ function Signup() {
     setError("");
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
+      const response = await fetch(`${API_BASE_URL}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
