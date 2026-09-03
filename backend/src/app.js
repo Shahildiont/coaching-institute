@@ -21,7 +21,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "coaching-institute-steel.vercel.app",
+  "coaching-institute-steel.vercel.app/api",
 ];
 
 
